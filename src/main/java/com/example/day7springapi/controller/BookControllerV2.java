@@ -9,6 +9,7 @@ import com.example.day7springapi.service.BookServiceV2;
 
 import jakarta.validation.Valid;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.security.access.prepost.PreAuthorize;
 
 import java.util.List;
 
@@ -35,7 +36,7 @@ public class BookControllerV2 {
     public Book create(@Valid @RequestBody BookCreateRequest request){
         Book book = new Book(
                 request.getId().trim(),
-                request.getTiltle().trim(),
+                request.getTitle().trim(),
                 request.getAuthor().trim(),
                 request.getPrice(),
                 request.getQuantily()
@@ -47,13 +48,14 @@ public class BookControllerV2 {
     public Book update(@PathVariable String id ,@Valid @RequestBody BookUpdateRequest request){
         Book book = new Book(
                 id,
-                request.getTiltle().trim(),
+                request.getTitle().trim(),
                 request.getAuthor().trim(),
                 request.getPrice(),
                 request.getQuantily()
         );
         return serviceV2.update(id,book);
     }
+    @PreAuthorize("hasRole('ADMIN')")
     @DeleteMapping("/{id}")
     public String delete(@PathVariable String id){
         serviceV2.delete("id");

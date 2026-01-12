@@ -33,7 +33,7 @@ public class BookDbService {
          }
          BookEntity book = new BookEntity(
                  id,
-                 request.getTiltle().trim(),
+                 request.getTitle().trim(),
                  request.getAuthor().trim(),
                  request.getPrice(),
                  request.getQuantily()
@@ -44,7 +44,7 @@ public class BookDbService {
      public BookEntity update(String id, BookUpdateRequest request){
          BookEntity book = findById(id);
 
-         book.setTitle(request.getTiltle().trim());
+         book.setTitle(request.getTitle().trim());
          book.setAuthor(request.getAuthor().trim());
          book.setPrice(request.getPrice());
          book.setQuantity(request.getQuantily());

@@ -6,7 +6,7 @@ public class BookUpdateRequest {
     private String id;
 
     @NotBlank(message = "Yêu cầu tiêu đề")
-    private String tiltle;
+    private String title;
 
     @NotBlank(message = "Yêu cầu tên tác giả")
     private  String author;
@@ -25,12 +25,12 @@ public class BookUpdateRequest {
         this.id = id;
     }
 
-    public String getTiltle() {
-        return tiltle;
+    public String getTitle() {
+        return title;
     }
 
-    public void setTiltle(String tiltle) {
-        this.tiltle = tiltle;
+    public void setTitle(String title) {
+        this.title = title;
     }
 
     public String getAuthor() {
