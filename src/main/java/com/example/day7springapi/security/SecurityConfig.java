@@ -12,8 +12,12 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.*;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
+import org.springframework.core.annotation.Order;
+
+
 @Configuration
 @EnableMethodSecurity
+
 public class SecurityConfig {
     private final JwtAuthFilter jwtAuthFilter;
 
@@ -22,6 +26,7 @@ public class SecurityConfig {
     }
 
     @Bean
+    @Order(2)
     public SecurityFilterChain filterChain(HttpSecurity httpSecurity) throws Exception {
         httpSecurity.csrf(csrf -> csrf.disable());
 
@@ -40,12 +45,4 @@ public class SecurityConfig {
         return httpSecurity.build();
     }
 
-    @Bean
-    public PasswordEncoder passwordEncoder(){
-        return new BCryptPasswordEncoder();
-    }
-    @Bean
-    public AuthenticationManager authenticationManager(AuthenticationConfiguration configuration) throws Exception{
-        return  configuration.getAuthenticationManager();
-    }
 }
